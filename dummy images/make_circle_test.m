@@ -1,10 +1,10 @@
 clear; close all
 
-image_size = 100;
+image_size = 1000;
 middle = floor(image_size/2);
-N_images = 40;
-radius = @(z) 6*z;
-center = @(z) 3*[z+10,z];
+N_images = 100;
+radius = @(z) z;
+center = @(z) 0.5*[z+5,z];
 
 B = make_dummy_image(image_size,radius,center,N_images);
 
@@ -14,3 +14,11 @@ for z=1:N_images
     pause(0.2);
     colormap gray;
 end
+
+STLname = 'dummySTL';
+gridDATA = B;
+STLformat = 'binary';
+gridX = 1:image_size;
+gridY = 1:image_size;
+gridZ = 1:N_images;
+CONVERT_voxels_to_stl(STLname,gridDATA,gridX, gridY, gridZ,STLformat);
